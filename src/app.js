@@ -2,6 +2,7 @@ import express from "express";
 import fixed_assets from './routes/fixed_assets.routes.js';
 import states from './routes/states.routes.js';
 import category from "./routes/category.routes.js";
+import locations from "./routes/locations.routes.js";
 
 
 const app = express();
@@ -13,5 +14,6 @@ app.use(express.json());
 app.use(fixed_assets);
 app.use(states);
 app.use(category);
+app.use(locations);
 
 export default app;
