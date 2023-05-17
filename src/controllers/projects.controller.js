@@ -1,5 +1,5 @@
-import { project } from "../models/project.js";
-import { task } from "../models/task.js";
+import { project } from "../models/fixed_assets.js";
+import { task } from "../models/states.js";
 
 export const getProjects = async (req, res) => {
   try {
