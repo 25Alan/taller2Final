@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
 
 export const states = sequelize.define(
-  "task",
+  "states",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -10,7 +10,7 @@ export const states = sequelize.define(
       autoIncrement: true,
     },
     state: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.STRING(15),
       allowNull: false,
     },
   },

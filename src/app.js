@@ -1,6 +1,7 @@
 import express from "express";
-import projectsRoutes from './routes/projects.routes.js';
-import tasksRoutes from './routes/tasks.routes.js';
+import fixed_assets from './routes/fixed_assets.routes.js';
+import states from './routes/states.routes.js';
+import category from "./routes/category.routes.js";
 
 
 const app = express();
@@ -9,7 +10,8 @@ const app = express();
 // TENGO QUE AÑADIR MIDDLEWARES
 app.use(express.json());
 
-app.use(projectsRoutes);
-app.use(tasksRoutes);
+app.use(fixed_assets);
+app.use(states);
+app.use(category);
 
 export default app;
