@@ -10,23 +10,23 @@ export const getAssets = async (req, res) => {
   }
 };
 
-// export const getProject = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const projectFound = await project.findOne({
-//       where: {
-//         id: id,
-//       },
-//     });
+export const getAsset = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const assetFound = await fixed_assets.findOne({
+      where: {
+        id: id,
+      },
+    });
 
-//     if (!projectFound)
-//       return res.status(404).json({ message: "Project not found" });
+    if (!assetFound)
+      return res.status(404).json({ message: "Project not found" });
 
-//     res.json(projectFound);
-//   } catch (error) {
-//     return res.status(500).json({ message: error.message });
-//   }
-// };
+    res.json(assetFound);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 
 export const createAsset = async (req, res) => {
   const {
@@ -37,11 +37,11 @@ export const createAsset = async (req, res) => {
     useful_life,
     residual_value,
     depreciation_start_date,
-    observations, 
+    observations,
     id_status,
     id_category,
-    id_method_depreciation, 
-    id_location, 
+    id_method_depreciation,
+    id_location,
     id_responsible } = req.body;
 
   try {
@@ -58,7 +58,7 @@ export const createAsset = async (req, res) => {
       id_category: id_category,
       id_method_depreciation: id_method_depreciation,
       id_location: id_location,
-      id_responsible: id_responsible  
+      id_responsible: id_responsible
     });
     res.json(newAsset);
   } catch (error) {
@@ -66,37 +66,77 @@ export const createAsset = async (req, res) => {
   }
 };
 
-// export const updateProject = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const { name, priority, description } = req.body;
+export const deleteAsset = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await fixed_assets.destroy({
+      where: {
+        id: id,
+      },
+    });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
 
-//     const projectId = await project.findByPk(id);
-//     projectId.name = name;
-//     projectId.priority = priority;
-//     projectId.description = description;
-//     await projectId.save();
+  res.sendStatus(204);
+};
 
-//     res.json(projectId);
-//   } catch (error) {
-//     return res.status(500).json({ message: error.message });
-//   }
-// };
+const getPagination = (page, size) => {
+  const limit = size ? +size : 3;
+  const offset = page ? page * limit : 0;
 
-// export const deleteProject = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     await project.destroy({
-//       where: {
-//         id: id,
-//       },
-//     });
-//   } catch (error) {
-//     return res.status(500).json({ message: error.message });
-//   }
+  return { limit, offset };
+};
 
-//   res.sendStatus(204);
-// };
+const getPagingData = (data, page, limit) => {
+  const { count: totalItems, rows: tutorials } = data;
+  const currentPage = page ? +page : 0;
+  const totalPages = Math.ceil(totalItems / limit);
+
+  return { totalItems, tutorials, totalPages, currentPage };
+};
+
+export const updateAsset = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      code,
+      description,
+      acquisition_value,
+      date_acquisition,
+      useful_life,
+      residual_value,
+      depreciation_start_date,
+      observations,
+      id_status,
+      id_category,
+      id_method_depreciation,
+      id_location,
+      id_responsible } = req.body;
+
+    const assetId = await fixed_assets.findByPk(id);
+    assetId.name = code;
+    assetId.description = description;
+    assetId.acquisition_value = acquisition_value;
+    assetId.date_acquisition = date_acquisition;
+    assetId.useful_life = useful_life;
+    assetId.residual_value = residual_value;
+    assetId.depreciation_start_date = depreciation_start_date;
+    assetId.observations = observations;
+    assetId.id_status = id_status;
+    assetId.id_category = id_category;
+    assetId.id_method_depreciation = id_method_depreciation;
+    assetId.id_location = id_location;
+    assetId.id_responsible = id_responsible;
+
+    await assetId.save();
+
+    res.json(assetId);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 
 // export const getProjectTasks = async (req, res) => {
 //   try {
