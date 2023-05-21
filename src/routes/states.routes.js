@@ -1,9 +1,9 @@
 import { Router } from "express";
 import {
-  createState,
-  deleteState,
   getState,
   getStates,
+  createState,
+  deleteState,
   updateState,
 } from "../controllers/states.controller.js";
 
