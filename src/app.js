@@ -1,5 +1,8 @@
 import express from "express";
 import cors from 'cors';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
 import fixed_assets from './routes/fixed_assets.routes.js';
 import states from './routes/states.routes.js';
 import category from "./routes/category.routes.js";
@@ -9,10 +12,13 @@ import responsible from "./routes/responsible.routes.js";
 
 const app = express();
 
-// PARA RECIBIR DATOS PRIMERO ANTES DE LAS RUTAS
-// TENGO QUE AÑADIR MIDDLEWARES
+// MIDDLEWARES
 app.use(express.json());
 app.use(cors());
+
+const __filename = fileURLToPath(import.meta.url);
+const publicPath = path.resolve(dirname(__filename), '../public');
+app.use(express.static(publicPath));
 
 app.use(fixed_assets);
 app.use(states);
