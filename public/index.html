@@ -5,11 +5,80 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME</title>
+
+    <link rel="stylesheet" href="./style/style.css">
+
+    <title>TABLE</title>
 </head>
 
 <body>
-    <h1>HELLO WORLD 1</h1>
+    <div class="container">
+        <h1 class="title">Users:</h1>
+        <table id="table">
+            <thead class="thead">
+                <tr class="list">
+                    <th class="code">Code - Description</th>
+                    <th class="status">Status</th>
+                    <th class="location">Location</th>
+                    <th class="phone">Phone</th>
+                    <th class="contact">Contact</th>
+                    <th class="action">Action</th>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+                <tr class="list">
+                    <th class="user">
+                        <img src="./assets/computer.png" alt="Icon" class="icon">
+                        <div class="name-or-userName">
+                            <div class="name">AF01</div>
+                            <div class="user-name">Computadora de escritorio</div>
+                        </div>
+                    </th>
+                    <th class="status">
+                        <div class="active">Active</div>
+                    </th>
+                    <th class="location">Andalgala</th>
+                    <th class="observations">En buen estado</th>
+                    <th class="modify">
+                        <button class="button">Modify</button>
+                    </th>
+                    <th class="action">
+                        <div class="action-button">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </th>
+                </tr>
+                <tr class="list">
+                    <th class="user">
+                        <img src="./assets/computer.png" alt="Icon" class="icon">
+                        <div class="name-or-userName">
+                            <div class="name">AF01</div>
+                            <div class="user-name">Computadora de escritorio</div>
+                        </div>
+                    </th>
+                    <th class="status">
+                        <div class="inactive">inActive</div>
+                    </th>
+                    <th class="location">Andalgala</th>
+                    <th class="observations">En buen estado</th>
+                    <th class="modify">
+                        <button class="button">Modify</button>
+                    </th>
+                    <th class="action">
+                        <div class="action-button">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
