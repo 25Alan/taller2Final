@@ -1,18 +1,18 @@
 import { Router } from "express";
 import {
-    getLocation,
+    getLocations,
     createLocation,
-    // createTask,
-    // deleteTask,
-    // updateTask,
+    updateLocation,
+    deleteLocation,
+    getLocation,
 } from "../controllers/locations.controller.js";
 
 const location = Router();
 
-location.get("/locations", getLocation);
+location.get("/locations", getLocations);
 location.post("/locations", createLocation);
-// tasksRoutes.put("/tasks/:id", updateTask);
-// tasksRoutes.delete("/tasks/:id", deleteTask);
-// tasksRoutes.get("/tasks/:id", getTask);
+tasksRoutes.put("/locations/:id", updateLocation);
+tasksRoutes.delete("/locations/:id", deleteLocation);
+tasksRoutes.get("/tasks/:id", getLocation);
 
 export default location;
