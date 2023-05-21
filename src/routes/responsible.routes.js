@@ -1,18 +1,18 @@
 import { Router } from "express";
 import {
     getResponsible,
+    getResponsibles,
     createResponsible,
-    // createTask,
-    // deleteTask,
-    // updateTask,
+    updateResponsible,
+    deleteReponsible,
 } from "../controllers/responsible.controller.js";
 
 const responsible = Router();
 
-responsible.get("/responsible", getResponsible);
+responsible.get("/responsible/:id", getResponsible);
+responsible.get("/responsible", getResponsibles);
 responsible.post("/responsible", createResponsible);
-// tasksRoutes.put("/tasks/:id", updateTask);
-// tasksRoutes.delete("/tasks/:id", deleteTask);
-// tasksRoutes.get("/tasks/:id", getTask);
+responsible.put("/responsible/:id", updateResponsible);
+responsible.delete("/responsible/:id", deleteReponsible);
 
 export default responsible;
