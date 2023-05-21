@@ -11,8 +11,8 @@ const location = Router();
 
 location.get("/locations", getLocations);
 location.post("/locations", createLocation);
-tasksRoutes.put("/locations/:id", updateLocation);
-tasksRoutes.delete("/locations/:id", deleteLocation);
-tasksRoutes.get("/tasks/:id", getLocation);
+location.put("/locations/:id", updateLocation);
+location.delete("/locations/:id", deleteLocation);
+location.get("/tasks/:id", getLocation);
 
 export default location;

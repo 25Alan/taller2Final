@@ -1,18 +1,18 @@
 import { Router } from "express";
 import {
-    getMethod_depreciation,
-    createMethod_depreciation,
-    // createTask,
-    // deleteTask,
-    // updateTask,
+    getMdepreciation,
+    getMdepreciations,
+    createMdepreciation,
+    updateMdepreciation,
+    deleteMdepreciation,
 } from "../controllers/method_depreciation.js";
 
 const method_depreciation = Router();
 
-method_depreciation.get("/method_depreciation", getMethod_depreciation);
-method_depreciation.post("/method_depreciation", createMethod_depreciation);
-// tasksRoutes.put("/tasks/:id", updateTask);
-// tasksRoutes.delete("/tasks/:id", deleteTask);
-// tasksRoutes.get("/tasks/:id", getTask);
+method_depreciation.get("/method_depreciation", getMdepreciations);
+method_depreciation.get("/method_depreciation/:id", getMdepreciation);
+method_depreciation.post("/method_depreciation", createMdepreciation);
+method_depreciation.put("/method_depreciation/:id", updateMdepreciation);
+method_depreciation.delete("/method_depreciation/:id", deleteMdepreciation);
 
 export default method_depreciation;
