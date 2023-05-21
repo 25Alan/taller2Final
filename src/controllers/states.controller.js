@@ -9,20 +9,21 @@ export const getStates = async (req, res) => {
   }
 };
 
-// export const getTask = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const taskFound = await task.findOne({
-//       where: {
-//         id: id,
-//       },
-//       attributes: ["name"],
-//     });
-//     res.json(taskFound);
-//   } catch (error) {
-//     return res.status(500).json({ message: error.message });
-//   }
-// };
+export const getState = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const stateFound = await states.findOne({
+      where: {
+        id: id,
+      },
+      attributes: ["name"],
+    });
+
+    res.json(stateFound);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 
 export const createState = async (req, res) => {
   const { state } = req.body;
@@ -37,29 +38,30 @@ export const createState = async (req, res) => {
   }
 };
 
-// export const updateTask = async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     const taskOne = await task.findOne({
-//       where: { id },
-//     });
-//     taskOne.set(req.body);
-//     await taskOne.save();
-//     return res.json(taskOne);
-//   } catch (error) {
-//     return res.status(500).json({ message: error.message });
-//   }
-// };
+export const updateState = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const newState = await states.findOne({
+      where: { id },
+    });
+    newState.set(req.body);
+    await newState.save();
 
-// export const deleteTask = async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     const result = await task.destroy({
-//       where: { id },
-//     });
-//     console.log(result);
-//     return res.sendStatus(204);
-//   } catch (error) {
-//     return res.status(500).json({ message: error.message });
-//   }
-// };
+    return res.json(newState);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const deleteState = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const dState = await states.destroy({
+      where: { id },
+    });
+    dState();
+    return res.sendStatus(204);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};

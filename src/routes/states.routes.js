@@ -1,18 +1,18 @@
 import { Router } from "express";
 import {
   createState,
+  deleteState,
+  getState,
   getStates,
-  // createTask,
-  // deleteTask,
-  // updateTask,
+  updateState,
 } from "../controllers/states.controller.js";
 
 const states = Router();
 
+states.get("/states/:id", getState);
 states.get("/states", getStates);
 states.post("/states", createState);
-// tasksRoutes.put("/tasks/:id", updateTask);
-// tasksRoutes.delete("/tasks/:id", deleteTask);
-// tasksRoutes.get("/tasks/:id", getTask);
+states.put("/states/:id", updateState);
+states.delete("/states/:id", deleteState);
 
 export default states;
