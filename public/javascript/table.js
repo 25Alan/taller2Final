@@ -40,8 +40,8 @@ export function newRow(code, description, state, location, observations, categor
     <th class="product">
         <img src="./assets/computer.png" alt="Icon" class="icon">
         <div class="code-description">
-            <div class="code">${description}</div>
-            <div class="description">${code}</div>
+            <div class="description">${description}</div>
+            <div class="code">${code}</div>
         </div>
     </th>
     <th class="status">

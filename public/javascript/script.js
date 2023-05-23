@@ -1,4 +1,7 @@
+import { search } from "./info.js";
 import { transformInfo } from "./table.js";
+
+const inputSearch = document.querySelector('#inputSearch');
 
 let array_FixedAssets = [];
 let array_Category = [];
@@ -32,6 +35,9 @@ const fetchData = async () => {
 
 window.onload = async () => {
     await fetchData();
+    inputSearch.addEventListener('input', () => {
+        search();
+    });
 
     await transformInfo(
         array_FixedAssets,
