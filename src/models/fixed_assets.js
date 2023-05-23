@@ -67,17 +67,29 @@ export const fixed_assets = sequelize.define(
   }
 );
 
-fixed_assets.belongsTo(states, { foreignKey: 'id_status', onDelete: 'CASCADE' });
-states.hasMany(fixed_assets, { foreignKey: 'id_status', onDelete: 'CASCADE' });
 
-fixed_assets.belongsTo(category, { foreignKey: 'id_category', onDelete: 'CASCADE' });
-category.hasMany(fixed_assets, { foreignKey: 'id_category', onDelete: 'CASCADE' });
+// states.hasMany(fixed_assets,
+//   {
+//     foreignKey: 'id_status',
+//     sourceKey: 'id'
+//   });
 
-fixed_assets.belongsTo(locations, { foreignKey: 'id_location', onDelete: 'CASCADE' });
-locations.hasMany(fixed_assets, { foreignKey: 'id_location', onDelete: 'CASCADE' });
+// fixed_assets.belongsTo(states,
+//   {
+//     foreignKey: 'id_status',
+//     targetId: 'id'
+//   });
 
-fixed_assets.belongsTo(responsible, { foreignKey: 'id_responsible', onDelete: 'CASCADE' });
-responsible.hasMany(fixed_assets, { foreignKey: 'id_responsible', onDelete: 'CASCADE' });
+// fixed_assets.belongsTo(states, { foreignKey: 'id' });
 
-fixed_assets.belongsTo(method_depreciation, { foreignKey: 'id_method_depreciation', onDelete: 'CASCADE' });
-method_depreciation.hasMany(fixed_assets, { foreignKey: 'id_method_depreciation', onDelete: 'CASCADE' });
+// fixed_assets.belongsTo(category, { foreignKey: 'id_category', onDelete: 'CASCADE' });
+// category.hasMany(fixed_assets, { foreignKey: 'id_category', onDelete: 'CASCADE' });
+
+// fixed_assets.belongsTo(locations, { foreignKey: 'id_location', onDelete: 'CASCADE' });
+// locations.hasMany(fixed_assets, { foreignKey: 'id_location', onDelete: 'CASCADE' });
+
+// fixed_assets.belongsTo(responsible, { foreignKey: 'id_responsible', onDelete: 'CASCADE' });
+// responsible.hasMany(fixed_assets, { foreignKey: 'id_responsible', onDelete: 'CASCADE' });
+
+// fixed_assets.belongsTo(method_depreciation, { foreignKey: 'id_method_depreciation', onDelete: 'CASCADE' });
+// method_depreciation.hasMany(fixed_assets, { foreignKey: 'id_method_depreciation', onDelete: 'CASCADE' });

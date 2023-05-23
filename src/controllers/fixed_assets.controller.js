@@ -138,14 +138,20 @@ export const updateAsset = async (req, res) => {
 };
 
 
-// export const getProjectTasks = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const tasks = await task.findAll({
-//       where: { projectId: id },
-//     });
-//     res.json(tasks);
-//   } catch (error) {
-//     return res.status(500).json({ message: error.message });
-//   }
-// };
+export const getFixedAssetsAll = async (req, res) => {
+  try {
+    const fixedAssets = await fixed_assets.findAll({
+      include: [
+        states,
+        category,
+        locations,
+        responsible,
+        method_depreciation,
+      ],
+    });
+
+    res.json(fixedAssets);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};

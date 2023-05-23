@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
+import { fixed_assets } from './fixed_assets.js'
 
 export const states = sequelize.define(
   "states",

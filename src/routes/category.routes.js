@@ -9,7 +9,7 @@ import {
 
 const category = Router();
 
-category.get("/tasks/:id", getCategory);
+category.get("/category/:id", getCategory);
 category.get("/category", getCategorys);
 category.post("/category", createCategory);
 category.put("/category/:id", updateCategory);

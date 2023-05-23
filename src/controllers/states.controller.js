@@ -15,9 +15,11 @@ export const getState = async (req, res) => {
     const stateFound = await states.findOne({
       where: {
         id: id,
-      },
-      attributes: ["name"],
+      }
     });
+
+    if (!stateFound)
+      return res.status(404).json({ message: "Project not found" });
 
     res.json(stateFound);
   } catch (error) {
