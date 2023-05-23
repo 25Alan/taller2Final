@@ -6,18 +6,19 @@
 
 body {
     background: var(--bgColor);
+    position: relative;
     font-family: sans-serif;
-    font-size: 14px;
+    font-size: 0.9rem;
 }
 
 .container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    max-width: 70%;
     background: var(--bgTable);
     padding: 1.2rem;
-    margin: 40px auto auto auto;
+    margin: 4rem 4rem 4rem 4rem;
 }
 
 h1 {
@@ -28,7 +29,7 @@ table {
     text-align: left;
     width: 100%;
     border-collapse: separate;
-    border-spacing: 0 1em;
+    border-spacing: 1px 1rem;
 }
 
 thead th {
@@ -40,12 +41,12 @@ th {
     font-weight: 400;
 }
 
-tbody .list_tbody {
+tbody .row_tbody {
     background: var(--bgRow);
-    box-shadow: 0 5px 20px #0001;
+    box-shadow: 0 1px 20px rgba(83, 83, 83, 0.838);
 }
 
-tbody .user {
+tbody .product {
     display: flex;
     align-items: center;
 }
@@ -59,13 +60,13 @@ tbody .icon {
     margin-right: 15px;
 }
 
-tbody .name {
+tbody .code {
     font-weight: 600;
 }
 
-tbody .user-name {
+tbody .description {
     font-size: 12px;
-    color: #666;
+    color: #3b3b3b;
 }
 
 tbody .active,
@@ -119,15 +120,15 @@ button {
 
 .action-button span {
     display: block;
-    width: 3px;
-    height: 3px;
-    background: #222;
+    width: 4px;
+    height: 4px;
+    background: #f244f8ff;
     border-radius: 50%;
     margin: 1px;
 }
 
 .action-button:hover span {
-    background: #0084ff;
+    opacity: 0.7;
 }
 
 .icon {

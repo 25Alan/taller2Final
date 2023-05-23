@@ -1,5 +1,4 @@
 import { fixed_assets } from "../models/fixed_assets.js";
-// import { task } from "../models/states.js";
 
 export const getAssets = async (req, res) => {
   try {
@@ -86,14 +85,6 @@ const getPagination = (page, size) => {
   const offset = page ? page * limit : 0;
 
   return { limit, offset };
-};
-
-const getPagingData = (data, page, limit) => {
-  const { count: totalItems, rows: tutorials } = data;
-  const currentPage = page ? +page : 0;
-  const totalPages = Math.ceil(totalItems / limit);
-
-  return { totalItems, tutorials, totalPages, currentPage };
 };
 
 export const updateAsset = async (req, res) => {
