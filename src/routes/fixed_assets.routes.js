@@ -5,7 +5,6 @@ import {
   createAsset,
   deleteAsset,
   updateAsset,
-  getFixedAssetsAll,
 } from "../controllers/fixed_assets.controller.js";
 
 const fixed_assets = Router();

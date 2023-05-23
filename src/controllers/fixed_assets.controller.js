@@ -1,8 +1,22 @@
 import { fixed_assets } from "../models/fixed_assets.js";
 
+const getPagination = (page, size) => {
+  const limit = size ? +size : 5; // Número de registros por página (por defecto: 10)
+  const offset = page ? (page - 1) * limit : 0; // Desplazamiento de registros (página actual - 1 * límite)
+
+  return { limit, offset };
+};
+
+
 export const getAssets = async (req, res) => {
   try {
-    const assets = await fixed_assets.findAll();
+    const { page, size } = req.query;
+    const { limit, offset } = getPagination(page, size);
+
+    const assets = await fixed_assets.findAll({
+      limit: limit,
+      offset: offset
+    });
     res.json(assets);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -80,13 +94,6 @@ export const deleteAsset = async (req, res) => {
   res.sendStatus(204);
 };
 
-const getPagination = (page, size) => {
-  const limit = size ? +size : 3;
-  const offset = page ? page * limit : 0;
-
-  return { limit, offset };
-};
-
 export const updateAsset = async (req, res) => {
   try {
     const { id } = req.params;
@@ -128,21 +135,20 @@ export const updateAsset = async (req, res) => {
   }
 };
 
+// export const getFixedAssetsAll = async (req, res) => {
+//   try {
+//     const fixedAssets = await fixed_assets.findAll({
+//       include: [
+//         states,
+//         category,
+//         locations,
+//         responsible,
+//         method_depreciation,
+//       ],
+//     });
 
-export const getFixedAssetsAll = async (req, res) => {
-  try {
-    const fixedAssets = await fixed_assets.findAll({
-      include: [
-        states,
-        category,
-        locations,
-        responsible,
-        method_depreciation,
-      ],
-    });
-
-    res.json(fixedAssets);
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
-  }
-};
+//     res.json(fixedAssets);
+//   } catch (error) {
+//     return res.status(500).json({ message: error.message });
+//   }
+// };
