@@ -1,4 +1,4 @@
-import { showInfo } from "./info.js";
+import { moreInfo, showInfo } from "./info.js";
 
 const tbody = document.querySelector('tbody');
 
@@ -60,4 +60,29 @@ export function newRow(code, description, state, location, observations, categor
         </div>
     </th>`;
     tbody.appendChild(newTr);
+}
+
+export function showMoreInfo() {
+    const tabla = document.querySelector('table');
+
+    tabla.addEventListener('dblclick', async (event) => {
+        const select = event.target.className;
+        let code = event.target.innerHTML;
+
+        document.querySelector('.container2').style.display = "block";
+        if (select == 'code') {
+            code = event.target.innerHTML;
+
+            await fetch(`http://localhost:4000/fixed_assets/${code}`)
+                .then(response => response.json())
+                .then(data =>
+                    moreInfo(
+                        data.acquisition_value,
+                        data.date_acquisition,
+                        data.useful_life,
+                        data.residual_value,
+                        data.depreciation_start_date
+                    ));
+        }
+    });
 }

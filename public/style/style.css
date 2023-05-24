@@ -165,3 +165,16 @@ button {
 button {
     cursor: pointer;
 }
+
+/***************************/
+
+.container2 {
+    position: absolute;
+    width: 50%;
+    backdrop-filter: blur(10px);
+    display: none;
+}
+
+#tableMoreInfo {
+    display: none;
+}

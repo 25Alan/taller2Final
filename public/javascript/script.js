@@ -1,5 +1,5 @@
 import { search } from "./info.js";
-import { transformInfo } from "./table.js";
+import { showMoreInfo, transformInfo } from "./table.js";
 
 const buttonPrev = document.querySelector('#buttonPrev');
 const buttonNext = document.querySelector('#buttonNext');
@@ -16,7 +16,7 @@ let array_States = [];
 let array_Responsible = [];
 let array_Locations = [];
 
-const fetchData = async (page = 1, size = 5) => {
+const fetchData = async () => {
     try {
         const urlFixed_Assets = `http://localhost:4000/fixed_assets?page=${page}&size=${size}`;
         const urlStates = 'http://localhost:4000/states';
@@ -73,5 +73,6 @@ window.onload = async () => {
         await fetchData(page, size);
     });
 
+    showMoreInfo();
     await fetchData(page, size);
 }

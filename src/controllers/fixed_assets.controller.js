@@ -1,4 +1,15 @@
+import { sequelize } from "../database/database.js";
 import { fixed_assets } from "../models/fixed_assets.js";
+
+export const result = async (req, res) => {
+  const { page, size } = req.query;
+  const { limit, offset } = getPagination(page, size);
+  const list = await sequelize.query(`SELECT "id", "code", "description", "acquisition_value", "date_acquisition", "useful_life", "residual_value", "depreciation_start_date", "observations", "id_status", "id_category", "id_method_depreciation", "id_location", "id_responsible"
+  FROM "fixed_assets" AS "fixed_assets"
+  LIMIT ${limit} OFFSET ${offset} ;`);
+
+  res.json(list);
+}
 
 const getPagination = (page, size) => {
   const limit = size ? +size : 5; // Número de registros por página (por defecto: 10)
@@ -14,8 +25,8 @@ export const getAssets = async (req, res) => {
     const { limit, offset } = getPagination(page, size);
 
     const assets = await fixed_assets.findAll({
-      limit: limit,
-      offset: offset
+      limit,
+      offset
     });
     res.json(assets);
   } catch (error) {
@@ -25,10 +36,10 @@ export const getAssets = async (req, res) => {
 
 export const getAsset = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { code } = req.params;
     const assetFound = await fixed_assets.findOne({
       where: {
-        id: id,
+        code: code,
       },
     });
 

@@ -29,3 +29,33 @@ export function search() {
     });
 }
 
+export function moreInfo(acquisition_value, date_acquisition, useful_life, residual_value, depreciation_start_date) {
+    const newTh = document.createElement('thead');
+    const newTr = document.createElement('tr');
+    const newTbody = document.createElement('tbody');
+    const table = document.querySelector('#tableMoreInfo')
+    table.innerHTML = ``;
+    newTh.classList.add('thead');
+    newTh.innerHTML = `
+    <tr class="list_thead">
+    <th>Acquisition value</th>
+    <th>Date acquisition</th>
+    <th>Useful life</th=>
+    <th>Residual value</th>
+    <th>Depreciation start date</th>
+    </tr>`
+    newTr.classList.add('row_tbody');
+    newTr.innerHTML = `
+        <th>${acquisition_value}</th>
+        <th>${date_acquisition}</th>
+        <th>${useful_life}</th>
+        <th>${residual_value}</th>
+        <th>${depreciation_start_date}</th>`
+
+    newTbody.appendChild(newTr);
+    table.appendChild(newTh);
+    table.appendChild(newTbody);
+    table.style.display = "block";
+}
+
+
