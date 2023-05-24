@@ -15,6 +15,6 @@ fixed_assets.get("/fixed_assets", getAssets);
 fixed_assets.get('/fixed_assets_all/', result)
 fixed_assets.post("/fixed_assets", createAsset);
 fixed_assets.delete("/fixed_assets/:code", deleteAsset);
-fixed_assets.put("/fixed_assets/:id", updateAsset);
+fixed_assets.put("/fixed_assets/:code", updateAsset);
 
 export default fixed_assets;

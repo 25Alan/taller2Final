@@ -91,7 +91,7 @@ export function showMoreInfo() {
                 .then(data =>
                     moreInfoReponsible(data.email));
         }
-        if (event.target.id == 'modify') formModify();
+        if (event.target.id == 'modify') formModify(event.target.parentNode.parentNode.parentNode.children[0].children[1].children[1].innerHTML);
         if (event.target.id == 'delete') {
             let codeDelete = event.target.parentNode.parentNode.parentNode.children[0].children[1].children[1].innerHTML;
             deleteInfo(codeDelete);

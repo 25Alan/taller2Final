@@ -12,7 +12,7 @@ export const result = async (req, res) => {
 }
 
 const getPagination = (page, size) => {
-  const limit = size ? +size : 5; // Número de registros por página (por defecto: 10)
+  const limit = size ? +size : 3; // Número de registros por página (por defecto: 10)
   const offset = page ? (page - 1) * limit : 0; // Desplazamiento de registros (página actual - 1 * límite)
 
   return { limit, offset };
@@ -107,7 +107,7 @@ export const deleteAsset = async (req, res) => {
 
 export const updateAsset = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { codeI } = req.params;
     const {
       code,
       description,
@@ -123,7 +123,7 @@ export const updateAsset = async (req, res) => {
       id_location,
       id_responsible } = req.body;
 
-    const assetId = await fixed_assets.findByPk(id);
+    const assetId = await fixed_assets.findOne(codeI);
     assetId.name = code;
     assetId.description = description;
     assetId.acquisition_value = acquisition_value;

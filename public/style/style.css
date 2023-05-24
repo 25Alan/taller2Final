@@ -185,6 +185,9 @@ button {
 }
 
 #updateForm {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     background-color: #000000;
     box-shadow: 0 1px 20px rgba(3, 70, 240, 0.838);
     color: white;

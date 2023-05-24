@@ -7,7 +7,7 @@ const inputSearch = document.querySelector('#inputSearch');
 const inputLimit = document.querySelector('#inputLimit');
 
 let page = 1;
-let size = 5;
+let size = 3;
 let array_FixedAssets = [];
 let array_Category = [];
 let array_Mdepreciation = [];

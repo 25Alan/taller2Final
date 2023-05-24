@@ -11,7 +11,6 @@ export function showInfo(fixed_assets, location, category, mdepreciation, states
         mdepreciation.name,
         responsible.name
     ];
-
     return tableInitial;
 }
 
@@ -76,10 +75,10 @@ export function moreInfoReponsible(email) {
     table.style.display = "block";
 }
 
-export async function formModify(code) {
+export async function formModify(codeI) {
     const form = document.querySelector('#updateForm');
     form.innerHTML = `
-    <label>Código: <input type="text" id="codeInput" required>${code}</label><br>
+    <label>Código:<input type="text" id="codeInput" value="${codeI}" required></label><br>
     <label>Descripción: <input type="text" id="descriptionInput" required></label><br>
     <label>Valor de adquisición: <input type="number" id="acquisitionValueInput" required></label><br>
     <label>Fecha de adquisición: <input type="date" id="dateAcquisitionInput" required></label><br>
@@ -87,12 +86,38 @@ export async function formModify(code) {
     <label>Valor residual: <input type="number" id="residualValueInput" required></label><br>
     <label>Fecha de inicio de depreciación: <input type="date" id="depreciationStartDateInput" required></label><br>
     <label>Observaciones: <textarea id="observationsInput" required></textarea></label><br>
-    <label>Estado: <input type="number" id="statusIdInput" required></label><br>
-    <label>Categoría: <input type="number" id="categoryIdInput" required></label><br>
-    <label>Método de depreciación: <input type="number" id="depreciationMethodIdInput" required></label><br>
-    <label>Ubicación: <input type="number" id="locationIdInput" required></label><br>
-    <label>Responsable: <input type="number" id="responsibleIdInput" required></label><br>
-    <button type="submit">Actualizar</button>  
+    <select id="id_status">
+        <option value="1">Activo</option>
+        <option value="2">En reparación</option>
+        <option value="3">Fuera de servicio</option>
+    </select>
+    <select name="" id="id_category">
+        <option value="1">Maquinería</option>
+        <option value="2">Vehiculo</option>
+        <option value="3">Construcciones</option>
+        <option value="4">Muebles</option>
+        <option value="5">Tecnologia</option>
+    </select>
+    <select id="id_method_depreciation">
+        <option value="1">Línea recta</option>
+        <option value="2">Suma de digitos</option>
+        <option value="3">Unidades producidas</option>
+    </select>
+    <select id="id_locations">
+        <option value="1">México</option>
+        <option value="2">España</option>
+        <option value="3">China</option>
+        <option value="4">Estados Unidos</option>
+        <option value="5">Argentina</option>
+    </select>
+    <select name="" id="id_responsible">
+        <option value="1">Juan Perez</option>
+        <option value="2">Maria Rodriguez</option>
+        <option value="3">Carlos Gonzales</option>
+        <option value="4">Ana Martinez</option>
+        <option value="5">Pedro Sanchez</option>
+    </select>  
+    <button type='submit'>Refresh</button>
     `
     form.style.display = "block";
 
@@ -101,37 +126,37 @@ export async function formModify(code) {
     updateForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
-        const code = document.getElementById('codeInput').value;
-        const description = document.getElementById('descriptionInput').value;
-        const acquisitionValue = document.getElementById('acquisitionValueInput').value;
-        const dateAcquisition = document.getElementById('dateAcquisitionInput').value;
-        const usefulLife = document.getElementById('usefulLifeInput').value;
-        const residualValue = document.getElementById('residualValueInput').value;
-        const depreciationStartDate = document.getElementById('depreciationStartDateInput').value;
-        const observations = document.getElementById('observationsInput').value;
-        const statusId = document.getElementById('statusIdInput').value;
-        const categoryId = document.getElementById('categoryIdInput').value;
-        const depreciationMethodId = document.getElementById('depreciationMethodIdInput').value;
-        const locationId = document.getElementById('locationIdInput').value;
-        const responsibleId = document.getElementById('responsibleIdInput').value;
+        const code = document.querySelector('#codeInput').value;
+        const description = document.querySelector('#descriptionInput').value;
+        const acquisitionValue = document.querySelector('#acquisitionValueInput').value;
+        const dateAcquisition = document.querySelector('#dateAcquisitionInput').value;
+        const usefulLife = document.querySelector('#usefulLifeInput').value;
+        const residualValue = document.querySelector('#residualValueInput').value;
+        const depreciationStartDate = document.querySelector('#depreciationStartDateInput').value;
+        const observations = document.querySelector('#observationsInput').value;
+        const id_status = document.querySelector('#id_status').value;
+        const id_category = document.querySelector('#id_category').value;
+        const id_method_depreciation = document.querySelector('#id_method_depreciation').value;
+        const id_locations = document.querySelector('#id_locations').value;
+        const id_responsible = document.querySelector('#id_responsible').value;
 
         const updateData = {
-            code,
-            description,
+            code: code,
+            description: description,
             acquisition_value: acquisitionValue,
             date_acquisition: dateAcquisition,
             useful_life: usefulLife,
             residual_value: residualValue,
             depreciation_start_date: depreciationStartDate,
-            observations,
-            id_status: statusId,
-            id_category: categoryId,
-            id_method_depreciation: depreciationMethodId,
-            id_location: locationId,
-            id_responsible: responsibleId
+            observations: observations,
+            id_status: id_status,
+            id_category: id_category,
+            id_method_depreciation: id_method_depreciation,
+            id_location: id_locations,
+            id_responsible: id_responsible
         };
 
-        await fetch(`http://localhost:4000/fixed_assets/${updateData}`, {
+        await fetch(`http://localhost:4000/fixed_assets/${codeI}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -149,6 +174,7 @@ export async function formModify(code) {
             .catch(error => {
                 console.error('Error updating asset:', error);
             });
+        form.style.display = "none";
     });
 }
 
@@ -167,48 +193,3 @@ export async function deleteInfo(selectDelete) {
             console.error(error);
         });
 }
-
-export async function updateInfo() {
-    const assetId = '123'; // ID del activo que deseas actualizar
-
-    const updatedData = {
-        code: 'Nuevo código',
-        description: 'Nueva descripción',
-        acquisition_value: 1000,
-        date_acquisition: '2023-05-17',
-        useful_life: 5,
-        residual_value: 100,
-        depreciation_start_date: '2023-01-01',
-        observations: 'Nuevas observaciones',
-        id_status: 1,
-        id_category: 2,
-        id_method_depreciation: 3,
-        id_location: 4,
-        id_responsible: 5
-    };
-
-    await fetch(`/api/assets/${assetId}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedData),
-    })
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('Error en la solicitud PUT');
-            }
-        })
-        .then((updatedAsset) => {
-            console.log('Activo actualizado:', updatedAsset);
-            // Realiza las acciones necesarias con el activo actualizado
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-}
-
-
-
