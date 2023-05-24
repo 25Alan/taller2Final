@@ -11,10 +11,10 @@ export const getResponsibles = async (req, res) => {
 
 export const getResponsible = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { name } = req.params;
         const responsibleFound = await responsible.findOne({
             where: {
-                id: id,
+                name: name,
             },
         });
 

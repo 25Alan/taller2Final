@@ -1,4 +1,4 @@
-import { moreInfo, showInfo } from "./info.js";
+import { moreInfo, moreInfoReponsible, showInfo } from "./info.js";
 
 const tbody = document.querySelector('tbody');
 
@@ -67,11 +67,10 @@ export function showMoreInfo() {
 
     tabla.addEventListener('dblclick', async (event) => {
         const select = event.target.className;
-        let code = event.target.innerHTML;
 
         document.querySelector('.container2').style.display = "block";
         if (select == 'code') {
-            code = event.target.innerHTML;
+            let code = event.target.innerHTML;
 
             await fetch(`http://localhost:4000/fixed_assets/${code}`)
                 .then(response => response.json())
@@ -83,6 +82,14 @@ export function showMoreInfo() {
                         data.residual_value,
                         data.depreciation_start_date
                     ));
+        }
+        if (select == 'responsible') {
+            let name = event.target.innerHTML;
+
+            await fetch(`http://localhost:4000/responsible/${name}`)
+                .then(response => response.json())
+                .then(data =>
+                    moreInfoReponsible(data.email));
         }
     });
 }

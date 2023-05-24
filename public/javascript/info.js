@@ -58,4 +58,18 @@ export function moreInfo(acquisition_value, date_acquisition, useful_life, resid
     table.style.display = "block";
 }
 
-
+export function moreInfoReponsible(email) {
+    const newTh = document.createElement('thead');
+    const newTr = document.createElement('tr');
+    const newTbody = document.createElement('tbody');
+    const table = document.querySelector('#tableMoreInfo')
+    table.innerHTML = ``;
+    newTh.classList.add('thead');
+    newTh.innerHTML = `<tr class="list_thead"><th>Email</th></tr>`
+    newTr.classList.add('row_tbody');
+    newTr.innerHTML = `<th>${email}</th>`
+    newTbody.appendChild(newTr);
+    table.appendChild(newTh);
+    table.appendChild(newTbody);
+    table.style.display = "block";
+}

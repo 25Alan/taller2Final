@@ -9,7 +9,7 @@ import {
 
 const responsible = Router();
 
-responsible.get("/responsible/:id", getResponsible);
+responsible.get("/responsible/:name", getResponsible);
 responsible.get("/responsible", getResponsibles);
 responsible.post("/responsible", createResponsible);
 responsible.put("/responsible/:id", updateResponsible);
