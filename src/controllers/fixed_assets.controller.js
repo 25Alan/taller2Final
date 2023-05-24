@@ -92,10 +92,10 @@ export const createAsset = async (req, res) => {
 
 export const deleteAsset = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { code } = req.params;
     await fixed_assets.destroy({
       where: {
-        id: id,
+        code: code,
       },
     });
   } catch (error) {

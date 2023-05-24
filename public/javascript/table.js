@@ -1,4 +1,5 @@
-import { moreInfo, moreInfoReponsible, showInfo } from "./info.js";
+import { deleteInfo, formModify, moreInfo, moreInfoReponsible, showInfo } from "./info.js";
+import { fetchData } from './script.js';
 
 const tbody = document.querySelector('tbody');
 
@@ -54,9 +55,8 @@ export function newRow(code, description, state, location, observations, categor
     <th class="responsible">${responsible}</th>
     <th class="action">
         <div class="action-button">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span id="modify"></span>
+            <span id="delete"></span>
         </div>
     </th>`;
     tbody.appendChild(newTr);
@@ -90,6 +90,12 @@ export function showMoreInfo() {
                 .then(response => response.json())
                 .then(data =>
                     moreInfoReponsible(data.email));
+        }
+        if (event.target.id == 'modify') formModify();
+        if (event.target.id == 'delete') {
+            let codeDelete = event.target.parentNode.parentNode.parentNode.children[0].children[1].children[1].innerHTML;
+            deleteInfo(codeDelete);
+            await fetchData();
         }
     });
 }

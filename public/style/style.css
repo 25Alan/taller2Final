@@ -135,23 +135,29 @@ button {
 
 .action-button {
     position: relative;
-    width: 20px;
+    width: 50px;
     height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     margin: 0 auto;
     cursor: pointer;
 }
 
 .action-button span {
-    display: block;
-    width: 4px;
-    height: 4px;
-    background: #f244f8ff;
-    border-radius: 50%;
+    width: 20px;
+    height: 20px;
     margin: 1px;
+}
+
+#modify {
+    background: rgb(14, 34, 211);
+    border-radius: 0 200% 0 0;
+}
+
+#delete {
+    background: rgb(255, 1, 1);
+    border-radius: 0 200% 0 0;
 }
 
 .action-button:hover span {
@@ -170,11 +176,23 @@ button {
 
 .container2 {
     position: absolute;
-    width: 50%;
     backdrop-filter: blur(10px);
     display: none;
 }
 
 #tableMoreInfo {
     display: none;
+}
+
+#updateForm {
+    background-color: #000000;
+    box-shadow: 0 1px 20px rgba(3, 70, 240, 0.838);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+#updateForm button {
+    margin: 2rem 0 1rem;
+    padding: 1rem;
 }

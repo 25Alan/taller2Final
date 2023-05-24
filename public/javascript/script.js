@@ -5,7 +5,6 @@ const buttonPrev = document.querySelector('#buttonPrev');
 const buttonNext = document.querySelector('#buttonNext');
 const inputSearch = document.querySelector('#inputSearch');
 const inputLimit = document.querySelector('#inputLimit');
-const buttonLimit = document.querySelector('#buttonLimit');
 
 let page = 1;
 let size = 5;
@@ -16,7 +15,7 @@ let array_States = [];
 let array_Responsible = [];
 let array_Locations = [];
 
-const fetchData = async () => {
+export const fetchData = async () => {
     try {
         const urlFixed_Assets = `http://localhost:4000/fixed_assets?page=${page}&size=${size}`;
         const urlStates = 'http://localhost:4000/states';
@@ -49,7 +48,7 @@ const fetchData = async () => {
 };
 
 window.onload = async () => {
-    buttonLimit.addEventListener('click', async () => {
+    inputLimit.addEventListener('change', async () => {
         document.querySelector('tbody').innerHTML = '';
         size = inputLimit.value;
         await fetchData(page, inputLimit.value);
