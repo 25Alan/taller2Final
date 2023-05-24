@@ -1,6 +1,7 @@
-import { search } from "./info.js";
+import { formCreate, search } from "./info.js";
 import { showMoreInfo, transformInfo } from "./table.js";
 
+const buttonCreate = document.querySelector('#createProduct');
 const buttonPrev = document.querySelector('#buttonPrev');
 const buttonNext = document.querySelector('#buttonNext');
 const inputSearch = document.querySelector('#inputSearch');
@@ -56,6 +57,11 @@ window.onload = async () => {
 
     inputSearch.addEventListener('input', () => {
         search();
+    });
+
+    buttonCreate.addEventListener('click', async () => {
+        document.querySelector('.container2').style.display = "block";
+        await formCreate();
     });
 
     buttonPrev.addEventListener('click', async () => {
